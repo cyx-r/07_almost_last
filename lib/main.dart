@@ -3,7 +3,6 @@
 import 'dart:convert';
 import 'dart:core';
 import 'package:flutter/material.dart';
-import 'fetch_file.dart';
 import 'ArtistPage.dart';
 import "AboutPage.dart";
 
