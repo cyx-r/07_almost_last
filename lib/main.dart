@@ -85,8 +85,8 @@ class _HomePageState extends State<HomePage> {
   }//Тут определяем, куда мы вообще нажали, вот такая логика
 
   _onSelectItem(int index) {
-    setState(() => _selectedDrawerElement = index);
-    _getSecelctedDrawerItem(_selectedDrawerElement);
+   _selectedDrawerElement = index;
+   _getSecelctedDrawerItem(_selectedDrawerElement);
     // Navigator.of(context).pop();
   }//Это тоже помогает ориентироваться
 
@@ -97,15 +97,15 @@ class _HomePageState extends State<HomePage> {
 
     for(int i =0; i< widget.drawerData.length; i++){
       drawerWidgetList.add(ListTile(title: Text(widget.drawerData[i].title), leading: Icon(widget.drawerData[i].icon),
-      onTap: (() => Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){return ArtistPage();}))
-      /*_onSelectItem(i)*/),
+      onTap: (() => Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){return _getSecelctedDrawerItem(_selectedDrawerElement);}))),
       selected: i == _selectedDrawerElement,
        ));
     }
     return Scaffold(
       appBar: AppBar(title:Text(widget.drawerData[_selectedDrawerElement].title)),
       body: Center(child: Text(widget.drawerData[_selectedDrawerElement].title)), //Благодаря конструкциям можно вот так задавать body 
-      drawer: Drawer(child: Column(children: drawerWidgetList),
+      drawer: Drawer(child: 
+        DrawerHeader(child:ListView(children: <Widget>[Text("Menu",style: TextStyle(fontWeight: FontWeight.bold),),]+ drawerWidgetList,)),
       ),
     );
   }
