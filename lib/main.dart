@@ -84,11 +84,10 @@ class _HomePageState extends State<HomePage> {
       }
   }//Тут определяем, куда мы вообще нажали, вот такая логика
 
-  _onSelectItem(int index) {
-   _selectedDrawerElement = index;
-   _getSecelctedDrawerItem(_selectedDrawerElement);
-    // Navigator.of(context).pop();
-  }//Это тоже помогает ориентироваться
+  // _onSelectItem(int index) {
+  //  _selectedDrawerElement = index;
+  //  _getSecelctedDrawerItem(_selectedDrawerElement);
+  // }//Это тоже помогает ориентироваться
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +96,9 @@ class _HomePageState extends State<HomePage> {
 
     for(int i =0; i< widget.drawerData.length; i++){
       drawerWidgetList.add(ListTile(title: Text(widget.drawerData[i].title), leading: Icon(widget.drawerData[i].icon),
-      onTap: (() => Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){return _getSecelctedDrawerItem(_selectedDrawerElement);}))),
+      onTap: (() => Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+         return _getSecelctedDrawerItem(i);
+        }))),
       selected: i == _selectedDrawerElement,
        ));
     }
